@@ -6,16 +6,22 @@ class Article:
         
 class Author:
     def __init__(self, name):
-        self.name = name
+        if not isinstance(name,str):
+            raise TypeError("Name must be of type str")
+        if len(name) ==0:
+            raise ValueError("Name must be longer than 0 characters")
+        self._name = name
+        self._articles=[]
+
 
     def articles(self):
-        pass
+        return self._articles
 
     def magazines(self):
-        pass
+        return list(set(article['magazine']for article in self._articles))
 
     def add_article(self, magazine, title):
-        pass
+        self._articles.append({'magazine':magazine,'title':title})
 
     def topic_areas(self):
         pass
